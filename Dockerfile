@@ -58,11 +58,14 @@ RUN cp -r /openbox-config/.config ~ubuntu/
 RUN chown -R ubuntu ~ubuntu/.config ; chgrp -R ubuntu ~ubuntu/.config
 RUN rm -r /openbox-config
 
+VOLUME ["/home/ubuntu/eclipse-workspace"]
+
 WORKDIR /
 
 ############ being Eclipse stuff ###############
 # java install
 RUN add-apt-repository ppa:webupd8team/java
+RUN apt-add-repository ppa:mmk2410/eclipse-ide-java
 RUN apt-get update
 # say yes to the oracle license agreement
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
@@ -73,7 +76,8 @@ RUN apt-get install -y --force-yes oracle-java8-set-default
 #
 # eclipse IDE
 RUN apt-get install -y desktop-file-utils
-RUN apt-get install -y eclipse
+#RUN apt-get install -y eclipse
+RUN apt-get install -y eclipse-ide-java
 ############ end Eclipse stuff ###############
 
 # noVNC
