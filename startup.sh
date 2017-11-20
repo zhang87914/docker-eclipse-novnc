@@ -23,6 +23,8 @@ then
   VNCPASS=''
 fi
 
+/bin/chown -R ubuntu.ubuntu /home/ubuntu/eclipse-workspace
+
 /usr/bin/supervisord -c /etc/supervisor/supervisord.conf
 
 for f in /etc/startup.aux/*.sh
